@@ -108,23 +108,41 @@
     function TestPassword(){
         
         let ErrorMessageArea = $('#ErrorMessage').hide()
-        
-        let passwordInput = $('#inputPassword2').val()
-
+        $('#inputPassword2').on("blur", function(){
+            let inputPassword = $(this).val()
+            if (inputPassword.length < 6){
+                $(this).trigger("focus").trigger("select")
+                ErrorMessageArea.addClass("alert alert-danger")
+                ErrorMessageArea.text("Password must be at least 6 chaacters long")
+                ErrorMessageArea.show()
+                
+            }
+            else{
+                ErrorMessageArea.removeAttr("class")
+                ErrorMessageArea.hide() 
+            }
+        })
         $('#confirmPassword').on("blur", function(){
             let confirmPassword = $(this).val()
-            if (!confirmPassword.test(passwordInput)){
+            let passwordInput = $('#inputPassword2').val()
+            let passwordInputText = new RegExp(passwordInput)
+            if (!passwordInputText.test(confirmPassword)){
                 $(this).trigger("focus").trigger("select")
                 ErrorMessageArea.addClass("alert alert-danger")
                 ErrorMessageArea.text("Ensure password and confirmed password match")
                 ErrorMessageArea.show()
+                
             }
             else{
                 ErrorMessageArea.removeAttr("class")
-                ErrorMessageArea.hide()
+                ErrorMessageArea.hide() 
             }
+        
         })
     }
+    $('#registerButton').on("click", function(){
+        event.preventDefault()
+    })
 
 
     function Start(){
@@ -132,7 +150,7 @@
         TestFirstName()
         TestLastName()
         TestEmail()
-        TestPassword
+        TestPassword()
 
 
     }

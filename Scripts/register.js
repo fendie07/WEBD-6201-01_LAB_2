@@ -1,5 +1,6 @@
 (function(){
 
+    //creates and appends text to the path
     let mainContent = document.getElementById("main")
 
     mainContent.setAttribute("class", "container")
@@ -21,6 +22,7 @@
         
     mainContent.append(mainParagraph)
 
+    //creates the hidden error message div
     let ErrorMessage = document.createElement("div")
     ErrorMessage.setAttribute("id", "ErrorMessage")
     ErrorMessage.setAttribute("class", "container")
@@ -28,8 +30,7 @@
 
         
     
-
-
+//function that reveals the error message if the first name isn't correctly filled
     function TestFirstName(){
         
         let ErrorMessageArea = $('#ErrorMessage').hide()
@@ -55,6 +56,7 @@
             }
         })
     }
+//function that shows the error message if the last name isn't correctly filleed
     function TestLastName(){
         
         let ErrorMessageArea = $('#ErrorMessage').hide()
@@ -80,6 +82,7 @@
             }
         })
     }
+//function that shows the error message if the email wasn't filled
     function TestEmail(){
         
         let ErrorMessageArea = $('#ErrorMessage').hide()
@@ -105,6 +108,7 @@
             }
         })
     }
+//function that shows the error message if the passwords don't match or are too short
     function TestPassword(){
         
         let ErrorMessageArea = $('#ErrorMessage').hide()
@@ -142,6 +146,8 @@
     }
     $('#registerButton').on("click", function(){
         event.preventDefault()
+        ShowUserInfo()
+        $('#registerForm').trigger('reset')
     })
 
 
